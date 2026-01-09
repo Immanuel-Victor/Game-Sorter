@@ -16,15 +16,20 @@ export class SorterController {
     }
 
     private sortUserGames(): RequestHandler {
-        console.log('Caiui aqui')
         return async (req: Request, res: Response) => {
             const userId = req.params.userId;
 
             if(!userId) {
-                throw new Error('Não é possivel realizar sorteio sem um id')
+               res.status(400).json({ message: 'Não é possivel realizar sorteio sem um id' })
+               return
             }
 
-            res.status(200).json(await this.sorterService.sortUserGames(userId))
+            try {
+                res.status(200).json(await this.sorterService.sortUserGames(userId))
+            } catch (error) {
+                console.log(error)
+                res.status(400).json({message: 'Algo inesperado aconteceu'})
+            }
         }
     }
 }
