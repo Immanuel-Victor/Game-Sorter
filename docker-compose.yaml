@@ -13,9 +13,9 @@ services:
       - redis
     environment:
       STEAM_CLIENT_KEY: ${STEAM_CLIENT_KEY}
-      STEAM_CLIENT_URL: ${STEAM_CLIENT_URL}
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+      STEAM_URL: ${STEAM_URL}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
     ports:
       - '${PORT}:${PORT}'
     networks:
